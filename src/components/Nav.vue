@@ -2,6 +2,7 @@
 import {RouterLink} from "vue-router"
 import {ref} from "vue"
 import Container from "./Container.vue"
+import AuthModal from "./AuthModal.vue"
 
 
 const searchUsername= ref("")
@@ -31,7 +32,7 @@ const onSearch = () => {}
 
                 <div class="left-content">
                         <AButton type="primary">Sign Up</AButton>
-                        <AButton type="primary">Login</AButton>
+                        <AuthModal/>
 
                 </div>
             
@@ -75,6 +76,13 @@ const onSearch = () => {}
 
 .left-content button{
         margin-left:10px;
+        margin-right:10px;
+    
+}
+
+.left-content{
+        display:flex;
+        align-items:center;
 }
 
 
