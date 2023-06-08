@@ -1,12 +1,14 @@
 <script setup>
-import {RouterLink} from "vue-router"
-import {ref} from "vue"
+import { RouterLink } from "vue-router"
+import { ref } from "vue"
 import Container from "./Container.vue"
 import AuthModal from "./AuthModal.vue"
 
 
-const searchUsername= ref("")
-const onSearch = () => {}
+const searchUsername = ref("")
+const isAuthenticated = ref('false')
+
+const onSearch = () => { }
 
 
 </script>
@@ -14,76 +16,56 @@ const onSearch = () => {}
 
 
 <template>
-
         <ALayoutHeader>
- <Container>
-        <div class="nav-container">
-                <div class="right-content">
-                        <RouterLink to="/">PhotoGram</RouterLink>
-                        <AInputSearch
-                        v-model:value="searchUsername"
-                        placeholder="Username..."
-                        style="width: 200px"
-                        @search="onSearch"
-                      />
-                     
+                <Container>
+                        <div class="nav-container">
+                                <div class="right-content">
+                                        <RouterLink to="/">PhotoGram</RouterLink>
+                                        <AInputSearch v-model:value="searchUsername" placeholder="Username..."
+                                          style="width: 200px" @search="onSearch" />
+                                </div>
 
-                </div>
+                                <div class="left-content" v-if="!isAuthenticated">
+                                        <AuthModal :isLogin="false" />
+                                        <AuthModal :isLogin="true" />
 
-                <div class="left-content">
-                        <AButton type="primary">Sign Up</AButton>
-                        <AuthModal/>
+                                </div>
+                                <div class="left-content" v-else="isAuthenticated">
+                                        <AButton type="primary">Profile </AButton>
+                                        <AButton type="primary">Logout </AButton>
 
-                </div>
-            
+                                </div>
+                        </div>
+                </Container>
 
-
-        </div>
-
-     
- </Container>
-                  
-
-     
-    
-
-
-          </ALayoutHeader>
-         
-
-
+        </ALayoutHeader>
 </template>
 
 
 
 <style scoped>
-
-.nav-container{
-        display:flex;
-        align-items:center;
+.nav-container {
+        display: flex;
+        align-items: center;
         justify-content: space-between;
 }
 
-.right-content{
-        display:flex;
+.right-content {
+        display: flex;
         align-items: center;
 
 }
 
-.right-content a{
-        margin-right:10px;
+.right-content a {
+        margin-right: 10px;
 }
 
-.left-content button{
-        margin-left:10px;
-        margin-right:10px;
-    
+.left-content {
+        display: flex;
+        align-items: center;
 }
 
-.left-content{
-        display:flex;
-        align-items:center;
+.left-content button {
+        margin-left:16px;
 }
-
-
 </style>

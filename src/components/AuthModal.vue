@@ -1,6 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
     const visible = ref(false);
+
+    const props = defineProps(['isLogin'])
 
     const showModal = () => {
       visible.value = true;
@@ -11,6 +13,7 @@ import { ref } from 'vue';
       visible.value = false;
     };
 
+    const title= props.isLogin ? 'Login' :'Signup'
     
 
 </script>
@@ -18,13 +21,25 @@ import { ref } from 'vue';
 
 <template>
     <div>
-      <AButton type="primary" @click="showModal">Open Modal</AButton>
-      <AModal v-model:visible="visible" title="Basic Modal" @ok="handleOk">
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <AButton class="btn-primary" type="primary" @click="showModal">{{title }}</AButton>
+      <AModal v-model:visible="visible" :title="title" @ok="handleOk">
+        <AInput v-if="!isLogin" class="input" v-model:value="value" placeholder="Username" />
+        <AInput class="input" v-model:value="value" placeholder="Email" />
+        <AInput class="input" v-model:value="value" placeholder="Password" />
+      
       </AModal>
     </div>
   </template>
 
+<style scoped>
+.input{
+ margin-bottom:16px;
+ border-radius:4px;
+
+}
+
+.btn-primary{
+  margin-left:16px;
+}
+</style>
  
