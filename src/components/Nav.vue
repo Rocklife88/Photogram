@@ -6,7 +6,7 @@ import AuthModal from "./AuthModal.vue"
 
 
 const searchUsername = ref("")
-const isAuthenticated = ref('false')
+const isAuthenticated = ref(false)
 
 const onSearch = () => { }
 
